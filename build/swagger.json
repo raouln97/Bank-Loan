@@ -5,125 +5,7 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {
-			"PartnerServices": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"price": {
-						"type": "number",
-						"format": "double"
-					},
-					"description": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"price",
-					"description"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"PartnerServicesDto": {
-				"properties": {
-					"userId": {
-						"type": "string"
-					},
-					"services": {
-						"items": {
-							"$ref": "#/components/schemas/PartnerServices"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"userId",
-					"services"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"PartnerProfileDtoRes": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"location": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"registeredOn": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"rating": {
-						"type": "number",
-						"format": "double"
-					},
-					"image": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"email",
-					"description",
-					"location",
-					"registeredOn",
-					"rating",
-					"image"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"PartnerProileDtoReq": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"location": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"rating": {
-						"type": "number",
-						"format": "double"
-					},
-					"image": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"email",
-					"description",
-					"location",
-					"rating",
-					"image"
-				],
-				"type": "object",
-				"additionalProperties": false
-			}
-		},
+		"schemas": {},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -136,40 +18,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/services": {
+		"/partners/testget": {
 			"get": {
-				"operationId": "GetPartnerServiceDetailsById",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PartnerServicesDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Services"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/services/test": {
-			"post": {
-				"operationId": "Test",
+				"operationId": "TestGet",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -177,152 +28,6 @@
 							"application/json": {
 								"schema": {
 									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Services"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/services/create": {
-			"post": {
-				"operationId": "CreatePartnerServices",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PartnerServicesDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Services"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PartnerServicesDto"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/services/update": {
-			"post": {
-				"operationId": "UpdatePartnerServiceDetails",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Services"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PartnerServicesDto"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/services/delete": {
-			"delete": {
-				"operationId": "DeletePartnerServices",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Services"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/partners": {
-			"get": {
-				"operationId": "GetPartnerDetailsById",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PartnerProfileDtoRes"
-										},
-										{
-											"items": {
-												"$ref": "#/components/schemas/PartnerProfileDtoRes"
-											},
-											"type": "array"
-										}
-									]
 								}
 							}
 						}
@@ -332,16 +37,7 @@
 					"Partners"
 				],
 				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
+				"parameters": []
 			}
 		},
 		"/partners/test": {
@@ -369,115 +65,19 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"type": "string"
+								"properties": {
+									"text": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"text"
+								],
+								"type": "object"
 							}
 						}
 					}
 				}
-			}
-		},
-		"/partners/create": {
-			"post": {
-				"operationId": "CreatePartner",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PartnerProfileDtoRes"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Partners"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PartnerProileDtoReq"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/partners/update": {
-			"post": {
-				"operationId": "UpdatePartnerDetails",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Partners"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PartnerProileDtoReq"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/partners/delete": {
-			"delete": {
-				"operationId": "DeletePartner",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Partners"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
 			}
 		}
 	},
