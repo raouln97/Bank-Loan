@@ -8,6 +8,7 @@ export interface PartnerModelDto extends Document {
   location: string[];
   registeredOn: Date;
   rating: number;
+  verificationStatus: string;
   image: string;
 }
 
@@ -19,8 +20,36 @@ export interface PartnerServicesDto extends Document {
 export interface PartnerServices extends Document {
   name: string;
   price: number;
+  staff: string[];
   description: string;
 }
+
+export interface userDataDto extends Document {
+  userName: string;
+  password: string;
+  email: string;
+  roles: string[];
+}
+
+const userSchema = new mongoose.Schema<userDataDto>({
+  userName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  roles: {
+    type: [String],
+    required: true,
+  },
+});
 
 const partnerSchema = new mongoose.Schema<PartnerModelDto>({
   name: {
@@ -48,6 +77,10 @@ const partnerSchema = new mongoose.Schema<PartnerModelDto>({
     type: Number,
     required: true,
   },
+  verificationStatus: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
     required: true,
@@ -68,6 +101,9 @@ const partnerServiceSchema = new mongoose.Schema<PartnerServicesDto>({
       price: {
         type: Number,
       },
+      staff: {
+        type: [String],
+      },
       description: {
         type: String,
       },
@@ -83,4 +119,9 @@ export const partnerData = mongoose.model<PartnerModelDto>(
 export const partnerServiceData = mongoose.model<PartnerServicesDto>(
   "partnerServiceSchema",
   partnerServiceSchema
+);
+
+export const userData = mongoose.model<userDataDto>(
+  "userSchema",
+  userSchema
 );
