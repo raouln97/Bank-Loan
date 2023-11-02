@@ -6,7 +6,7 @@ import { RegisterRoutes } from "../build/routes";
 const app = express();
 
 const url =
-  "mongodb+srv://raoulnanwani:EO3OiggXjYFhfS83@crudappcluster.yxyohpg.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://raoulnanwani:EO3OiggXjYFhfS83@crudappcluster.yxyohpg.mongodb.net/?retryWrites=true&w=majority"; //change this
 mongoose.connect(url);
 const con = mongoose.connection;
 app.use(json()); // Parse JSON bodies
