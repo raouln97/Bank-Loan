@@ -5,7 +5,112 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"ApplicationReqDTO": {
+				"properties": {
+					"loanAmount": {
+						"type": "number",
+						"format": "double"
+					},
+					"balanceAmount": {
+						"type": "number",
+						"format": "double"
+					},
+					"productId": {
+						"type": "string"
+					},
+					"productDetailsId": {
+						"type": "string"
+					},
+					"productName": {
+						"type": "string"
+					},
+					"productType": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"loanAmount",
+					"balanceAmount",
+					"productId",
+					"productDetailsId",
+					"productName",
+					"productType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"StatusUpdateDTO": {
+				"properties": {
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PaymentReqDTO": {
+				"properties": {
+					"applicationId": {
+						"type": "string"
+					},
+					"paymentAmount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"applicationId",
+					"paymentAmount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductDetails": {
+				"properties": {
+					"loanTerm": {
+						"type": "number",
+						"format": "double"
+					},
+					"interestRate": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"loanTerm",
+					"interestRate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductReqDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"productDetails": {
+						"items": {
+							"$ref": "#/components/schemas/ProductDetails"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"type",
+					"productDetails"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {
 			"api_key": {
 				"type": "apiKey",
@@ -27,7 +132,7 @@
 		}
 	},
 	"info": {
-		"title": "crudapptest",
+		"title": "bankloan",
 		"version": "1.0.0",
 		"license": {
 			"name": "ISC"
@@ -36,6 +141,222 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/applications": {
+			"get": {
+				"operationId": "GetApplications",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applications"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/applications/create": {
+			"post": {
+				"operationId": "CreateApplications",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applications"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ApplicationReqDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/applications/update": {
+			"post": {
+				"operationId": "UpdatepplicationService",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applications"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/StatusUpdateDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/payments": {
+			"get": {
+				"operationId": "GetPayments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Payments"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/payments/create": {
+			"post": {
+				"operationId": "MakePayments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Payments"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PaymentReqDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/products": {
+			"get": {
+				"operationId": "GetProducts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/products/create": {
+			"post": {
+				"operationId": "CreateProducts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProductReqDTO"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/partners/test": {
 			"post": {
 				"operationId": "Test",

@@ -15,8 +15,8 @@ import {
   } from "tsoa";
   
   
-  @Tags("Partners")
-  @Route("/partners")
+  @Tags("Test")
+  @Route("/test")
   export class PartnerProfileController extends Controller {
     // private readonly partnerService: PartnerProfileService;
   
@@ -25,7 +25,7 @@ import {
     //   this.partnerService = new PartnerProfileService();
     }
   
-    @Post("/test")
+    @Post("/")
     public async test(@Body() body:{text: string}): Promise<string> {
       return body.text;
     }

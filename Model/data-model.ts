@@ -1,127 +1,125 @@
 import mongoose, { Document } from "mongoose";
 
 // Define an interface representing a user document
-export interface PartnerModelDto extends Document {
+
+export interface ProductDetailsDTO extends Document {
+  loanTerm: number
+  interestRate: number
+}
+export interface ProductsDTO extends Document {
   name: string;
-  email: string;
-  description: string;
-  location: string[];
-  registeredOn: Date;
-  rating: number;
-  verificationStatus: string;
-  image: string;
+  type: string;
+  productDetails: ProductDetailsDTO[]
 }
 
-export interface PartnerServicesDto extends Document {
-  userId: string;
-  services: PartnerServices[];
+export interface ApplicationsDTO extends Document {
+  status: string
+  loanAmount: number
+  balanceAmount: number
+  createdDate: Date
+  productId: string
+  productDetailsId: string
+  productName: string
+  productType: string
+  monthlyRepayment: string
 }
 
-export interface PartnerServices extends Document {
-  name: string;
-  price: number;
-  staff: string[];
-  description: string;
+export interface PaymentsDTO extends Document {
+  applicationId: string
+  paymentDate: Date
+  paymentAmount: Number
 }
 
-export interface userDataDto extends Document {
-  userName: string;
-  password: string;
-  email: string;
-  roles: string[];
-}
-
-const userSchema = new mongoose.Schema<userDataDto>({
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
+const ProductDetailsSchema =  new mongoose.Schema<ProductDetailsDTO>({
+  loanTerm: {
+      type: Number,
+      required: true
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  roles: {
-    type: [String],
-    required: true,
-  },
+  interestRate: {
+      type: Number,
+      required: true
+  }
 });
 
-const partnerSchema = new mongoose.Schema<PartnerModelDto>({
+const productSchema = new mongoose.Schema<ProductsDTO>({
   name: {
     type: String,
     required: true,
-  },
-  email: {
-    type: String,
-    required: true,
     unique: true,
   },
-  description: {
+  type: {
     type: String,
     required: true,
   },
-  location: {
-    type: [String],
+  productDetails: [ProductDetailsSchema] 
+});
+
+const applicationSchema = new mongoose.Schema<ApplicationsDTO>({
+  status: {
+    type: String,
     required: true,
   },
-  registeredOn: {
-    type: Date,
-    default: new Date(),
-  },
-  rating: {
+  loanAmount: {
     type: Number,
     required: true,
   },
-  verificationStatus: {
+  balanceAmount: {
+    type: Number,
+    required: true,
+  },
+  createdDate: {
+    type: Date,
+    default: Date.now,
+  },
+  productId: {
     type: String,
     required: true,
   },
-  image: {
+  productDetailsId: {
+    type: String,
+    required: true,
+  },
+  productName: {
+    type: String,
+    required: true,
+  },
+  productType: {
+    type: String,
+    required: true,
+  },
+  monthlyRepayment: {
     type: String,
     required: true,
   },
 });
 
-const partnerServiceSchema = new mongoose.Schema<PartnerServicesDto>({
-  userId: {
+const paymentSchema = new mongoose.Schema<PaymentsDTO>({
+  applicationId: {
     type: String,
     required: true,
-    unique: true,
   },
-  services: [
-    {
-      name: {
-        type: String,
-      },
-      price: {
-        type: Number,
-      },
-      staff: {
-        type: [String],
-      },
-      description: {
-        type: String,
-      },
-    },
-  ],
+  paymentDate: {
+    type: Date,
+    default: Date.now,
+  },
+  paymentAmount: {
+    type: Number,
+    required: true,
+  },
+  
 });
 
-export const partnerData = mongoose.model<PartnerModelDto>(
-  "partnerSchema",
-  partnerSchema
+export const productsData = mongoose.model<ProductsDTO>(
+  "productSchema",
+  productSchema
 );
 
-export const partnerServiceData = mongoose.model<PartnerServicesDto>(
-  "partnerServiceSchema",
-  partnerServiceSchema
+export const applicationData = mongoose.model<ApplicationsDTO>(
+  "applicationSchema",
+  applicationSchema
 );
 
-export const userData = mongoose.model<userDataDto>(
-  "userSchema",
-  userSchema
+export const paymentData = mongoose.model<PaymentsDTO>(
+  "paymentSchema",
+  paymentSchema
 );
