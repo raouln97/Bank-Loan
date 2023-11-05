@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { RegisterRoutes } from "../build/routes";
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from '../build/swagger.json'
+import cors from 'cors'
 
 
 const app = express();
@@ -14,6 +15,7 @@ mongoose.connect(url);
 const con = mongoose.connection;
 app.use(json()); // Parse JSON bodies
 app.use(urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 RegisterRoutes(app);

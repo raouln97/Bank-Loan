@@ -357,7 +357,7 @@
 				}
 			}
 		},
-		"/partners/test": {
+		"/test": {
 			"post": {
 				"operationId": "Test",
 				"responses": {
@@ -373,7 +373,7 @@
 					}
 				},
 				"tags": [
-					"Partners"
+					"Test"
 				],
 				"security": [],
 				"parameters": [],
