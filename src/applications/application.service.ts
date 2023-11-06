@@ -16,7 +16,7 @@ export class ApplicationService {
         const monthlyRate = annualInterestRate / 12 / 100;
         const monthlyPayment = (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -termInMonths));
 
-        return monthlyPayment;
+        return parseFloat(monthlyPayment.toFixed(2));;
 
     }
 
