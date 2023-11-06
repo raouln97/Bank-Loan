@@ -24,7 +24,9 @@ export class PaymentsService {
         const rate = annualInterestRate / 12 / 100;
     
         // Monthly repayment calculation
-        const monthlyRepayment = principal * (rate * Math.pow((1 + rate), termInMonths)) / (Math.pow((1 + rate), termInMonths) - 1);
+        const monthlyRepaymentRaw = principal * (rate * Math.pow((1 + rate), termInMonths)) / (Math.pow((1 + rate), termInMonths) - 1);
+        const monthlyRepayment = parseFloat(monthlyRepaymentRaw.toFixed(2));
+
     
         return {monthlyRepayment, updatedPrincipal: principal};
     }
