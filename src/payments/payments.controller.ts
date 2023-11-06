@@ -28,8 +28,8 @@ import { PaymentsService } from "./payments.service";
     }
 
     @Get("/")
-    public async getPayments(@Query("id") id?: string): Promise<any> {
-        if (id) return this.paymentService.getPayment(id)
+    public async getPayments(@Query("id") applicationId?: string): Promise<any> {
+        if (applicationId) return this.paymentService.getPayment(applicationId)
         return this.paymentService.getPayments();
       }
   

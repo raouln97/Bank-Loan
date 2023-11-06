@@ -10,7 +10,7 @@ export class PaymentsService {
     }
 
     async getPayment(id: string){
-        return paymentData.findById(id)
+        return paymentData.find({applicationId: id})
     }
 
     recalculateRepayment(principal: number, termInMonths: number, annualInterestRate: number, paymentAmount: number) {
