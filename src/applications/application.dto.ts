@@ -14,5 +14,6 @@ export interface StatusUpdateDTO{
 export enum BankLoanInterface{
     UNDER_REVIEW="Under Review",
     APPROVED = "Approved",
-    REJECTED= "Rejected"
+    REJECTED= "Rejected",
+    COMPLETED = "Completed"
 }

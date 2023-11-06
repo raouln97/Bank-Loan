@@ -1,3 +1,4 @@
+import { BankLoanInterface } from "../applications/application.dto";
 import { applicationData, paymentData, productsData } from "../../Model/data-model";
 import { PaymentReqDTO } from "./payments.dto";
 
@@ -45,6 +46,10 @@ export class PaymentsService {
         }
 
         const paymentDetails = this.recalculateRepayment(application.balanceAmount, productDetails.loanTerm, productDetails.interestRate, body.paymentAmount)
+
+        if (paymentDetails.updatedPrincipal === 0){
+            await applicationData.findOneAndUpdate(application._id, {monthlyRepayment: paymentDetails.monthlyRepayment, balanceAmount: paymentDetails.updatedPrincipal, status: BankLoanInterface.COMPLETED})
+        }
 
         await applicationData.findOneAndUpdate(application._id, {monthlyRepayment: paymentDetails.monthlyRepayment, balanceAmount: paymentDetails.updatedPrincipal})
 
