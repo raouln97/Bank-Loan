@@ -13,6 +13,8 @@ export interface ProductsDTO extends Document {
 }
 
 export interface ApplicationsDTO extends Document {
+  applicationName: string
+  applicationReason: string
   status: string
   loanAmount: number
   balanceAmount: number
@@ -55,6 +57,14 @@ const productSchema = new mongoose.Schema<ProductsDTO>({
 });
 
 const applicationSchema = new mongoose.Schema<ApplicationsDTO>({
+  applicationName:{
+    type: String,
+    required: true,
+  },
+  applicationReason:{
+    type: String,
+    required: true,
+  },
   status: {
     type: String,
     required: true,

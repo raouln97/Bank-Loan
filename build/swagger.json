@@ -8,6 +8,12 @@
 		"schemas": {
 			"ApplicationReqDTO": {
 				"properties": {
+					"applicationName": {
+						"type": "string"
+					},
+					"applicationReason": {
+						"type": "string"
+					},
 					"loanAmount": {
 						"type": "number",
 						"format": "double"
@@ -30,6 +36,8 @@
 					}
 				},
 				"required": [
+					"applicationName",
+					"applicationReason",
 					"loanAmount",
 					"balanceAmount",
 					"productId",

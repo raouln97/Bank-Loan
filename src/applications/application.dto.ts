@@ -1,4 +1,6 @@
 export interface ApplicationReqDTO{
+    applicationName: string
+    applicationReason: string
     loanAmount: number
     balanceAmount: number
     productId: string

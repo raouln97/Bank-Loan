@@ -18,6 +18,8 @@ const models: TsoaRoute.Models = {
     "ApplicationReqDTO": {
         "dataType": "refObject",
         "properties": {
+            "applicationName": {"dataType":"string","required":true},
+            "applicationReason": {"dataType":"string","required":true},
             "loanAmount": {"dataType":"double","required":true},
             "balanceAmount": {"dataType":"double","required":true},
             "productId": {"dataType":"string","required":true},
