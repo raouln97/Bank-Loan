@@ -5,12 +5,14 @@ import { RegisterRoutes } from "../build/routes";
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from '../build/swagger.json'
 import cors from 'cors'
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 
 const app = express();
+const url = process.env.MONGO_CONNECTION_STRING
 
-const url =
-  "mongodb+srv://raoulnanwani:qiFoFfeKWH3Mt8Jv@cluster0.qgevhxc.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(url);
 const con = mongoose.connection;
 app.use(json()); // Parse JSON bodies
